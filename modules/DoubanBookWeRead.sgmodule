@@ -2,7 +2,7 @@
 #!desc=Add a WeRead search button to Douban mobile book subject pages.
 
 [Script]
-DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=DoubanBookWeRead.js
+DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=scripts/DoubanBookWeRead.js
 
 [MITM]
 hostname = %APPEND% m.douban.com

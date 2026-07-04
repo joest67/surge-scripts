@@ -5,7 +5,7 @@
  *
  * Surge:
  * [Script]
- * DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://example.com/DoubanBookWeRead.js
+ * DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=scripts/DoubanBookWeRead.js
  *
  * Quantumult X:
  * [rewrite_local]
