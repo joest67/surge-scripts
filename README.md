@@ -4,8 +4,9 @@ Personal Surge scripts and modules.
 
 ## Douban Book WeRead
 
-Adds a **WeRead** button to Douban mobile book subject pages. The button opens
-WeRead search with the current Douban book title.
+Adds a compact WeRead search section to Douban mobile book subject pages. The
+script searches WeRead with the current Douban book title, shows matching
+results, and keeps a small "jump to search" link.
 
 Example page:
 
@@ -13,11 +14,18 @@ Example page:
 https://m.douban.com/book/subject/37077202/
 ```
 
-The injected button links to:
+The fallback search link opens:
 
 ```text
 https://weread.qq.com/web/search/books?keyword=<book-title>
 ```
+
+### Preview
+
+![Douban Book WeRead preview](assets/douban-book-weread-iphone12pro.png)
+
+- GitHub: https://github.com/joest67/surge-scripts/blob/main/assets/douban-book-weread-iphone12pro.png
+- Raw: https://raw.githubusercontent.com/joest67/surge-scripts/main/assets/douban-book-weread-iphone12pro.png
 
 ### URL Install
 
@@ -43,8 +51,11 @@ If the repository is used as the Surge profile directory, you may also change
 the module to use a local script path:
 
 ```ini
-script-path=scripts/DoubanBookWeRead.js
+script-path=scripts/DoubanBookWeRead.js,debug=true
 ```
+
+On Surge Mac, `debug=true` reloads the script from the filesystem before each
+execution, which is useful while adjusting the local script.
 
 Keep this layout:
 
@@ -75,7 +86,10 @@ certificate on the device.
 DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js?v=20260704-1,script-update-interval=60
 ```
 
-The response script injects the WeRead search button next to the book title.
+The response script replaces the Douban subject banner with a compact WeRead
+result shelf. The header uses the WeRead icon, shows a small matched-title note
+when a high-confidence result is found, and provides a small "jump to search"
+link.
 Open Douban with a mobile browser mode, such as Chrome DevTools device mode,
 so `https://m.douban.com/book/subject/...` stays on the mobile site instead of
 redirecting to `https://book.douban.com/subject/...`.
