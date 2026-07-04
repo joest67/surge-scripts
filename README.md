@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/joest67/surge-scripts/main/modules/DoubanBookW
 The module references the JavaScript file by absolute raw URL:
 
 ```ini
-script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js
+script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js?v=20260704-1
 ```
 
 This is recommended for URL installation. If `script-path` is a local relative
@@ -72,7 +72,7 @@ certificate on the device.
 
 ```ini
 [Script]
-DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js
+DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js?v=20260704-1,script-update-interval=60
 ```
 
 The response script injects the WeRead search button next to the book title.
