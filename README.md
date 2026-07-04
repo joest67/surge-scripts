@@ -22,7 +22,7 @@ https://weread.qq.com/web/search/books?keyword=<book-title>
 
 ### Preview
 
-![Douban Book WeRead preview](assets/douban-book-weread-iphone12pro.png)
+<img src="assets/douban-book-weread-iphone12pro.png" alt="Douban Book WeRead preview" width="360">
 
 - GitHub: https://github.com/joest67/surge-scripts/blob/main/assets/douban-book-weread-iphone12pro.png
 - Raw: https://raw.githubusercontent.com/joest67/surge-scripts/main/assets/douban-book-weread-iphone12pro.png
