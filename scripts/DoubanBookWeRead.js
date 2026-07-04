@@ -19,6 +19,7 @@ let body = typeof $response !== "undefined" ? $response.body : "";
 let url = typeof $request !== "undefined" ? $request.url : "";
 
 body = body.replace(/<a\s+class=["']db-weread-search["'][\s\S]*?<\/a>/g, "");
+body = body.replace(/<style>[\s\S]*?\.db-weread-search[\s\S]*?<\/style>/g, "");
 
 const bookTitle = pick([
   /<div[^>]+class=["'][^"']*\bsub-title\b[^"']*["'][^>]*>\s*([^<]+?)\s*<\/div>/i,
