@@ -4,8 +4,5 @@
 [Script]
 DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js
 
-[Header Rewrite]
-http-request ^https://m\.douban\.com/book/subject/\d+/?$ header-replace User-Agent Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1
-
 [MITM]
 hostname = %APPEND% m.douban.com
