@@ -18,7 +18,10 @@
 let body = typeof $response !== "undefined" ? $response.body : "";
 let url = typeof $request !== "undefined" ? $request.url : "";
 
+body = body.replace(/<a\s+class=["']db-weread-search["'][\s\S]*?<\/a>/g, "");
+
 const bookTitle = pick([
+  /<div[^>]+class=["'][^"']*\bsub-title\b[^"']*["'][^>]*>\s*([^<]+?)\s*<\/div>/i,
   /<span[^>]+property=["']v:itemreviewed["'][^>]*>\s*([^<]+?)\s*<\/span>/i,
   /<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i,
   /<title>\s*([^<(]+?)\s*(?:\(豆瓣\))?\s*<\/title>/i,
@@ -34,7 +37,7 @@ const isbn = pick([
   /<span[^>]*class=["']pl["'][^>]*>\s*ISBN:\s*<\/span>\s*([0-9Xx-]+)/i,
 ]);
 
-if (bookTitle && body.indexOf("db-weread-search") === -1) {
+if (bookTitle) {
   const query = buildQuery(bookTitle, author, isbn);
   const wereadUrl = "https://weread.qq.com/web/search/books?keyword=" + encodeURIComponent(query);
   const button = buildButton(wereadUrl);
@@ -54,7 +57,7 @@ function pick(patterns) {
 
 function buildQuery(title, authorName, isbnCode) {
   // Title works best for WeRead. ISBN is kept as a fallback when the title is absent.
-  if (title) return title;
+  if (title) return cleanTitle(title);
   if (isbnCode) return isbnCode;
   return authorName || "";
 }
@@ -82,12 +85,19 @@ function insertButton(html, button) {
     return html.replace("</head>", style + "</head>").replace(h1SpanPattern, "$1" + button);
   }
 
-  const ogTitlePattern = /(<meta\s+property=["']og:title["']\s+content=["'][^"']+["']\s*\/?>)/i;
-  if (ogTitlePattern.test(html)) {
-    return html.replace("</head>", style + "</head>").replace(ogTitlePattern, "$1" + button);
+  const mobileTitlePattern = /(<div[^>]+class=["'][^"']*\bsub-title\b[^"']*["'][^>]*>[^<]+<\/div>)/i;
+  if (mobileTitlePattern.test(html)) {
+    return html.replace("</head>", style + "</head>").replace(mobileTitlePattern, "$1" + button);
   }
 
   return html;
+}
+
+function cleanTitle(title) {
+  return String(title)
+    .replace(/\s*-\s*图书\s*$/i, "")
+    .replace(/\s*-\s*豆瓣\s*$/i, "")
+    .trim();
 }
 
 function decodeHtml(text) {
