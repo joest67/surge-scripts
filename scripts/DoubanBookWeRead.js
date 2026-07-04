@@ -5,11 +5,11 @@
  *
  * Surge:
  * [Script]
- * DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=scripts/DoubanBookWeRead.js
+ * DoubanBookWeRead = type=http-response,pattern=^https://m\.douban\.com/book/subject/\d+/?$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js
  *
  * Quantumult X:
  * [rewrite_local]
- * ^https://m\.douban\.com/book/subject/\d+/?$ url script-response-body https://example.com/DoubanBookWeRead.js
+ * ^https://m\.douban\.com/book/subject/\d+/?$ url script-response-body https://raw.githubusercontent.com/joest67/surge-scripts/main/scripts/DoubanBookWeRead.js
  *
  * MITM:
  * hostname = m.douban.com
